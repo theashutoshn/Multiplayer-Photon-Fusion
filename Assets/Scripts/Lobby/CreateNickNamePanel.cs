@@ -20,9 +20,9 @@ public class CreateNickNamePanel : LobbyPanelBase
         inputField.onValueChanged.AddListener(OnInputFieldValueChanged);
     }
 
-    void OnInputFieldValueChanged(string arg0)
+    void OnInputFieldValueChanged(string value)
     {
-        createNickNameButton.interactable = arg0.Length >= inputchar;
+        createNickNameButton.interactable = value.Length >= inputchar;
     }
 
     void OnClickCreateNickname()
@@ -30,8 +30,8 @@ public class CreateNickNamePanel : LobbyPanelBase
         var nickName = inputField.text;
         if(nickName.Length >= inputchar)
         {
-            base.ClosePanel();
-            lobbyUIManager.ShowPanel(LobbyPanelType.MiddleSectionPanel);
+            base.ClosePanel(); //close current panel
+            lobbyUIManager.ShowPanel(LobbyPanelType.MiddleSectionPanel); //show next panel
         }
     }
 }
