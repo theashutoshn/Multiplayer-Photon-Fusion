@@ -10,17 +10,18 @@ public class PlayerSpawnerController : NetworkBehaviour, IPlayerJoined, IPlayerL
 
     public override void Spawned()
     {
-        if(Runner.IsServer)
+        if (Runner.IsServer)
         {
-            foreach(var item in Runner.ActivePlayers)
+            foreach (var item in Runner.ActivePlayers)
             {
                 SpawnPlayer(item);
             }
         }
     }
+
     private void SpawnPlayer(PlayerRef playerRef)
     {
-        if(Runner.IsServer)
+        if (Runner.IsServer)
         {
             var index = playerRef % spawnPoints.Length;
             var spawnPoint = spawnPoints[index].transform.position;
@@ -32,9 +33,9 @@ public class PlayerSpawnerController : NetworkBehaviour, IPlayerJoined, IPlayerL
 
     private void DespawnPlayer(PlayerRef playerRef)
     {
-        if(Runner.IsServer)
+        if (Runner.IsServer)
         {
-            if(Runner.TryGetPlayerObject(playerRef, out var playerNetworkObj))
+            if (Runner.TryGetPlayerObject(playerRef, out var playerNetworkObj))
             {
                 Runner.Despawn(playerNetworkObj);
             }
